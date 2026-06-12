@@ -1,8 +1,15 @@
 <?php
 
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\MasterCategoryController;
+use App\Http\Controllers\Admin\SizeController;
+use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\SupplierController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\CustomerGroupController;
 
 Route::get('/', function () {
     return redirect()->route('dashboard');
@@ -23,6 +30,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('logout');
 
     Route::prefix('admin')->name('admin.')->group(function () {
+        Route::resource('sizes', SizeController::class)->except(['show']);
+        Route::resource('brands', BrandController::class)->except(['show']);
+        Route::resource('master-categories', MasterCategoryController::class)->except(['show']);
+        Route::resource('sub-categories', SubCategoryController::class)->except(['show']);
+        Route::resource('suppliers', SupplierController::class)->except(['show']);
+        Route::resource('customers', CustomerController::class)->except(['show']);
+        Route::resource('customer-groups', CustomerGroupController::class)->except(['show']);
+
+        Route::post('/master-categories/quick-store', [MasterCategoryController::class, 'quickStore'])
+            ->name('master-categories.quick-store');
+
         Route::view('/users', 'admin.users.index')
             ->middleware('permission:users.view')
             ->name('users.index');
@@ -49,4 +67,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
     });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

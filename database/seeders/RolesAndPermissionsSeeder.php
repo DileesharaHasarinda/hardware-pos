@@ -23,6 +23,8 @@ class RolesAndPermissionsSeeder extends Seeder
             'users.delete',
             'roles.manage',
 
+            'master-details.manage',
+
             'products.view',
             'products.create',
             'products.update',
@@ -34,6 +36,11 @@ class RolesAndPermissionsSeeder extends Seeder
             'suppliers.create',
             'suppliers.update',
             'suppliers.delete',
+
+            'customers.view',
+            'customers.create',
+            'customers.update',
+            'customers.delete',
 
             'customers.view',
             'customers.create',
@@ -76,6 +83,8 @@ class RolesAndPermissionsSeeder extends Seeder
             'users.view',
             'users.create',
             'users.update',
+
+            'master-details.manage',
 
             'products.view',
             'products.create',
@@ -140,6 +149,8 @@ class RolesAndPermissionsSeeder extends Seeder
 
         $inventoryOfficer->syncPermissions([
             'dashboard.view',
+
+            'master-details.manage',
 
             'products.view',
             'products.create',

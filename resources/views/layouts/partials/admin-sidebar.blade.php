@@ -1,7 +1,6 @@
 <aside
     :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'"
-    class="fixed inset-y-0 left-0 z-50 w-72 transform overflow-y-auto border-r border-slate-200 bg-slate-950 text-slate-200 transition-transform duration-300 ease-in-out"
->
+    class="fixed inset-y-0 left-0 z-50 w-72 transform overflow-y-auto border-r border-slate-200 bg-slate-950 text-slate-200 transition-transform duration-300 ease-in-out">
     <div class="flex h-20 items-center justify-between border-b border-slate-800 px-6">
         <div>
             <h1 class="text-xl font-bold tracking-wide text-white">Hardware POS</h1>
@@ -11,10 +10,9 @@
         <button
             class="rounded-lg p-2 text-slate-400 hover:bg-slate-800 hover:text-white lg:hidden"
             @click="sidebarOpen = false"
-            type="button"
-        >
+            type="button">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18L18 6M6 6l12 12"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18L18 6M6 6l12 12" />
             </svg>
         </button>
     </div>
@@ -26,13 +24,13 @@
             <p class="text-xs text-slate-400">{{ auth()->user()->email }}</p>
 
             @if(method_exists(auth()->user(), 'getRoleNames'))
-                <div class="mt-3 flex flex-wrap gap-2">
-                    @foreach(auth()->user()->getRoleNames() as $role)
-                        <span class="rounded-full bg-emerald-500/15 px-2.5 py-1 text-[11px] font-medium text-emerald-300">
-                            {{ ucfirst($role) }}
-                        </span>
-                    @endforeach
-                </div>
+            <div class="mt-3 flex flex-wrap gap-2">
+                @foreach(auth()->user()->getRoleNames() as $role)
+                <span class="rounded-full bg-emerald-500/15 px-2.5 py-1 text-[11px] font-medium text-emerald-300">
+                    {{ ucfirst($role) }}
+                </span>
+                @endforeach
+            </div>
             @endif
         </div>
 
@@ -42,16 +40,14 @@
 
                 <div class="space-y-1">
                     @can('dashboard.view')
-                        <a
-                            href="{{ route('dashboard') }}"
-                            class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition
-                                {{ request()->routeIs('dashboard') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12l9-9 9 9M4.5 10.5V20a1 1 0 001 1H9v-6h6v6h3.5a1 1 0 001-1v-9.5"/>
-                            </svg>
-                            Dashboard
-                        </a>
+                    <a
+                        href="{{ route('dashboard') }}"
+                        class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition {{ request()->routeIs('dashboard') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 12l9-9 9 9M4.5 10.5V20a1 1 0 001 1H9v-6h6v6h3.5a1 1 0 001-1v-9.5" />
+                        </svg>
+                        Dashboard
+                    </a>
                     @endcan
                 </div>
             </div>
@@ -61,87 +57,164 @@
 
                 <div class="space-y-1">
                     @can('products.view')
-                        <a
-                            href="{{ route('admin.products.index') }}"
-                            class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition
-                                {{ request()->routeIs('admin.products.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10"/>
-                            </svg>
-                            Products
-                        </a>
+                    <a
+                        href="{{ route('admin.products.index') }}"
+                        class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition {{ request()->routeIs('admin.products.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10" />
+                        </svg>
+                        Products
+                    </a>
+                    @endcan
+
+                    @can('suppliers.view')
+                    <a
+                        href="{{ route('admin.suppliers.index') }}"
+                        class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition {{ request()->routeIs('admin.suppliers.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M20 7l-8-4-8 4m16 0v10l-8 4m8-14l-8 4-8-4m8 4v10" />
+                        </svg>
+                        Suppliers
+                    </a>
+                    @endcan
+
+                    @can('customers.view')
+                    <a
+                        href="{{ route('admin.customers.index') }}"
+                        class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition {{ request()->routeIs('admin.customers.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 20h5V4H2v16h5m10 0v-2a4 4 0 00-4-4H11a4 4 0 00-4 4v2m10 0H7m8-10a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        Customers
+                    </a>
                     @endcan
 
                     @can('inventory.view')
-                        <a
-                            href="{{ route('admin.inventory.index') }}"
-                            class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition
-                                {{ request()->routeIs('admin.inventory.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 7h16M4 12h16M4 17h10"/>
-                            </svg>
-                            Inventory
-                        </a>
+                    <a
+                        href="{{ route('admin.inventory.index') }}"
+                        class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition {{ request()->routeIs('admin.inventory.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 7h16M4 12h16M4 17h10" />
+                        </svg>
+                        Inventory
+                    </a>
                     @endcan
 
                     @can('purchases.view')
-                        <a
-                            href="{{ route('admin.purchases.index') }}"
-                            class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition
-                                {{ request()->routeIs('admin.purchases.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6M7 13l1.5 6m9-6l1.5 6M9 19h6"/>
-                            </svg>
-                            Purchases
-                        </a>
+                    <a
+                        href="{{ route('admin.purchases.index') }}"
+                        class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition {{ request()->routeIs('admin.purchases.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6M7 13l1.5 6m9-6l1.5 6M9 19h6" />
+                        </svg>
+                        Purchases
+                    </a>
                     @endcan
 
                     @can('sales.view')
-                        <a
-                            href="{{ route('admin.sales.index') }}"
-                            class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition
-                                {{ request()->routeIs('admin.sales.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8c-2.21 0-4 .895-4 2s1.79 2 4 2 4 .895 4 2-1.79 2-4 2m0-10v12m8-6a8 8 0 11-16 0 8 8 0 0116 0z"/>
-                            </svg>
-                            Sales / POS
-                        </a>
+                    <a
+                        href="{{ route('admin.sales.index') }}"
+                        class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition {{ request()->routeIs('admin.sales.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8c-2.21 0-4 .895-4 2s1.79 2 4 2 4 .895 4 2-1.79 2-4 2m0-10v12m8-6a8 8 0 11-16 0 8 8 0 0116 0z" />
+                        </svg>
+                        Sales / POS
+                    </a>
                     @endcan
 
                     @can('reports.view')
-                        <a
-                            href="{{ route('admin.reports.index') }}"
-                            class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition
-                                {{ request()->routeIs('admin.reports.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 17v-6m4 6V7m4 10v-3M5 21h14"/>
-                            </svg>
-                            Reports
-                        </a>
+                    <a
+                        href="{{ route('admin.reports.index') }}"
+                        class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition {{ request()->routeIs('admin.reports.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 17v-6m4 6V7m4 10v-3M5 21h14" />
+                        </svg>
+                        Reports
+                    </a>
                     @endcan
                 </div>
             </div>
+
+            @can('master-details.manage')
+            <div x-data="{ openMasterDetails: {{ request()->routeIs('admin.sizes.*') || request()->routeIs('admin.brands.*') || request()->routeIs('admin.master-categories.*') || request()->routeIs('admin.sub-categories.*') || request()->routeIs('admin.customer-groups.*') ? 'true' : 'false' }} }">
+                <p class="mb-3 px-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">Master Details</p>
+
+                <div class="space-y-1">
+                    <button
+                        type="button"
+                        @click="openMasterDetails = !openMasterDetails"
+                        class="flex w-full items-center justify-between rounded-xl px-3 py-3 text-sm font-medium text-slate-300 transition hover:bg-slate-900 hover:text-white">
+                        <span class="flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6v12m6-6H6" />
+                            </svg>
+                            Master Details
+                        </span>
+
+                        <svg
+                            :class="openMasterDetails ? 'rotate-180' : ''"
+                            class="h-4 w-4 transition-transform duration-200"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <div x-show="openMasterDetails" x-transition class="ml-4 space-y-1 overflow-hidden">
+                        <a
+                            href="{{ route('admin.customer-groups.index') }}"
+                            class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition {{ request()->routeIs('admin.customer-groups.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+                            <span class="h-2 w-2 rounded-full bg-current opacity-80"></span>
+                            Customer Groups
+                        </a>
+
+                        <a
+                            href="{{ route('admin.sizes.index') }}"
+                            class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition {{ request()->routeIs('admin.sizes.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+                            <span class="h-2 w-2 rounded-full bg-current opacity-80"></span>
+                            List of Sizes
+                        </a>
+
+                        <a
+                            href="{{ route('admin.brands.index') }}"
+                            class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition {{ request()->routeIs('admin.brands.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+                            <span class="h-2 w-2 rounded-full bg-current opacity-80"></span>
+                            Brands
+                        </a>
+
+                        <a
+                            href="{{ route('admin.master-categories.index') }}"
+                            class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition {{ request()->routeIs('admin.master-categories.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+                            <span class="h-2 w-2 rounded-full bg-current opacity-80"></span>
+                            Master Categories
+                        </a>
+
+                        <a
+                            href="{{ route('admin.sub-categories.index') }}"
+                            class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition {{ request()->routeIs('admin.sub-categories.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+                            <span class="h-2 w-2 rounded-full bg-current opacity-80"></span>
+                            Sub Categories
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @endcan
 
             <div>
                 <p class="mb-3 px-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">Administration</p>
 
                 <div class="space-y-1">
                     @can('users.view')
-                        <a
-                            href="{{ route('admin.users.index') }}"
-                            class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition
-                                {{ request()->routeIs('admin.users.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 20h5V4H2v16h5m10 0v-2a4 4 0 00-4-4H11a4 4 0 00-4 4v2m10 0H7m8-10a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            </svg>
-                            Users
-                        </a>
+                    <a
+                        href="{{ route('admin.users.index') }}"
+                        class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition {{ request()->routeIs('admin.users.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 20h5V4H2v16h5m10 0v-2a4 4 0 00-4-4H11a4 4 0 00-4 4v2m10 0H7m8-10a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        Users
+                    </a>
                     @endcan
                 </div>
             </div>
