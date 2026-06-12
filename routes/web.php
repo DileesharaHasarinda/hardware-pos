@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\CustomerGroupController;
+use App\Http\Controllers\Admin\UnitController;
 
 Route::get('/', function () {
     return redirect()->route('dashboard');
@@ -37,6 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('suppliers', SupplierController::class)->except(['show']);
         Route::resource('customers', CustomerController::class)->except(['show']);
         Route::resource('customer-groups', CustomerGroupController::class)->except(['show']);
+        Route::resource('units', UnitController::class)->except(['show']);
 
         Route::post('/master-categories/quick-store', [MasterCategoryController::class, 'quickStore'])
             ->name('master-categories.quick-store');
