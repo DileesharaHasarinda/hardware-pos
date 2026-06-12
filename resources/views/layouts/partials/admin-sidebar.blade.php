@@ -136,7 +136,7 @@
             </div>
 
             @can('master-details.manage')
-            <div x-data="{ openMasterDetails: {{ request()->routeIs('admin.sizes.*') || request()->routeIs('admin.brands.*') || request()->routeIs('admin.master-categories.*') || request()->routeIs('admin.sub-categories.*') || request()->routeIs('admin.customer-groups.*') ? 'true' : 'false' }} }">
+            <div x-data="{ openMasterDetails: {{ request()->routeIs('admin.customer-groups.*') || request()->routeIs('admin.sizes.*') || request()->routeIs('admin.units.*') || request()->routeIs('admin.brands.*') || request()->routeIs('admin.master-categories.*') || request()->routeIs('admin.sub-categories.*') ? 'true' : 'false' }} }">
                 <p class="mb-3 px-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">Master Details</p>
 
                 <div class="space-y-1">
@@ -168,6 +168,13 @@
                             class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition {{ request()->routeIs('admin.customer-groups.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
                             <span class="h-2 w-2 rounded-full bg-current opacity-80"></span>
                             Customer Groups
+                        </a>
+
+                        <a
+                            href="{{ route('admin.units.index') }}"
+                            class="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium transition {{ request()->routeIs('admin.units.*') ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/20' : 'text-slate-300 hover:bg-slate-900 hover:text-white' }}">
+                            <span class="h-2 w-2 rounded-full bg-current opacity-80"></span>
+                            Units
                         </a>
 
                         <a
